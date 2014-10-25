@@ -5,7 +5,7 @@ dnsmasq: build-dnsmasq.sh
 
 # Build serf from source... trying to make it static, but I'm failing
 serf: build-serf.sh
-	docker run -t -v $(PWD):/out golang:1.3.3 /bin/bash /out/build-serf.sh
+	docker run -rm -v $(PWD):/out golang:1.3.3 /bin/bash /out/build-serf.sh
 
 # The prebuilt needs a C library
 serfer: dnsmasq
