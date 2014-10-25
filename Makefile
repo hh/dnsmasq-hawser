@@ -8,7 +8,11 @@ serf: build-serf.sh
 	docker run -rm -v $(PWD):/out golang:1.3.3 /bin/bash /out/build-serf.sh
 
 # The prebuilt needs a C library
-serfer: dnsmasq
+serf-dynamic: dnsmasq
 	wget -qO- http://dl.bintray.com/mitchellh/serf/0.6.3_linux_amd64.zip | funzip > serf
+
+# Mongod from src
+mongod: build-mongodb.sh
+	docker run -t -v $(PWD):/out -e CC=gcc gcc:4.9 /bin/bash /out/build-mongodb.sh
 clean:
 	rm -rf dnsmasq serf
